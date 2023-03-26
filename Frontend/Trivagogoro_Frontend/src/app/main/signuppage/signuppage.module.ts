@@ -1,0 +1,17 @@
+import { SignuppageComponent } from './signuppage.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { SignuppageRoutingModule } from './signuppage-routing.module';
+
+
+@NgModule({
+  declarations: [
+    SignuppageComponent
+  ],
+  imports: [
+    CommonModule,
+    SignuppageRoutingModule
+  ]
+})
+export class SignuppageModule { }
