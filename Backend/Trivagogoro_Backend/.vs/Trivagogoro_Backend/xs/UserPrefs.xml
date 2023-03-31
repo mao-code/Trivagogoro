@@ -1,25 +1,32 @@
 ﻿<Properties StartupConfiguration="{D5F84B70-00D1-49F0-AE54-3B831B5DB25A}|http">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Trivagogoro_Backend/Controllers/User/UserController.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Trivagogoro__Backend PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Trivagogoro_Backend/Services/RestaurantService.cs">
     <Files>
-      <File FileName="Trivagogoro_Backend/Program.cs" Line="11" Column="53" />
-      <File FileName="Trivagogoro_Backend/Controllers/User/UserController.cs" Line="36" Column="10" />
+      <File FileName="Trivagogoro_Backend/Program.cs" />
+      <File FileName="Trivagogoro_Backend/Controllers/User/UserController.cs" />
       <File FileName="Trivagogoro_Backend/Controllers/BaseController.cs" />
-      <File FileName="Trivagogoro_Backend/Models/User.cs" Line="6" Column="20" />
-      <File FileName="Trivagogoro_Backend/Models/UserCredential.cs" Line="10" Column="42" />
-      <File FileName="Trivagogoro_Backend/Services/UserService.cs" Line="26" Column="68" />
-      <File FileName="Trivagogoro_Backend/appsettings.json" Line="9" Column="84" />
-      <File FileName="Trivagogoro_Backend/Services/BaseService.cs" Line="2" Column="1" />
-      <File FileName="Trivagogoro_Backend/GlobalUsings.cs" Line="10" Column="50" />
-      <File FileName="Trivagogoro_Backend/Services/Contract/IUserService.cs" Line="7" Column="74" />
-      <File FileName="Trivagogoro_Backend/Controllers/User/DTO/Reqs/SignUpReq.cs" Line="3" Column="42" />
-      <File FileName="Trivagogoro_Backend/Controllers/User/DTO/Reses/SignUpRes.cs" Line="6" Column="9" />
-      <File FileName="Trivagogoro_Backend/Controllers/User/DTO/ResponseData.cs" Line="11" Column="73" />
-      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/SignInReq.cs" Line="10" Column="54" />
-      <File FileName="Trivagogoro_Backend/Models/DTO/Reses/SignInRes.cs" Line="6" Column="9" />
+      <File FileName="Trivagogoro_Backend/Models/User.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Models/UserCredential.cs" />
+      <File FileName="Trivagogoro_Backend/Services/UserService.cs" Line="8" Column="65" />
+      <File FileName="Trivagogoro_Backend/appsettings.json" />
+      <File FileName="Trivagogoro_Backend/Services/BaseService.cs" Line="13" Column="49" />
+      <File FileName="Trivagogoro_Backend/GlobalUsings.cs" />
+      <File FileName="Trivagogoro_Backend/Services/Contract/IUserService.cs" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/SignInReq.cs" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/Reses/SignInRes.cs" />
       <File FileName="Trivagogoro_Backend/Services/PasswordService.cs" Line="23" Column="2" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/SignInDTO.cs" Line="7" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/SignInDTO.cs" />
+      <File FileName="Trivagogoro_Backend/Controllers/Restaurant/RestaurantController.cs" Line="24" Column="64" />
+      <File FileName="Trivagogoro_Backend/Services/Contract/IRestaurantService.cs" Line="8" Column="23" />
+      <File FileName="Trivagogoro_Backend/Services/RestaurantService.cs" Line="66" Column="13" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/RestaurantDTO.cs" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/ResponseData.cs" />
+      <File FileName="Trivagogoro_Backend/Models/Restaurant.cs" Line="12" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,19 +34,14 @@
           <Node name="Trivagogoro_Backend" expanded="True">
             <Node name="Trivagogoro_Backend" expanded="True">
               <Node name="Controllers" expanded="True">
-                <Node name="User" expanded="True">
-                  <Node name="UserController.cs" selected="True" />
-                </Node>
+                <Node name="Restaurant" expanded="True" />
+                <Node name="User" expanded="True" />
               </Node>
-              <Node name="Models" expanded="True">
-                <Node name="DTO" expanded="True">
-                  <Node name="Reqs" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Properties" expanded="True" />
+              <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
                 <Node name="Contract" expanded="True" />
                 <Node name="DTO" expanded="True" />
+                <Node name="RestaurantService.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -47,9 +49,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Trivagogoro__Backend PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

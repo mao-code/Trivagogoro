@@ -8,4 +8,5 @@ global using System.ComponentModel.DataAnnotations;
 global using Trivagogoro_Backend.Models.DTO;
 global using Trivagogoro_Backend.Models.DTO.Reqs;
 global using Trivagogoro_Backend.Models.DTO.Reses;
+global using Trivagogoro_Backend.Services.DTO;
 

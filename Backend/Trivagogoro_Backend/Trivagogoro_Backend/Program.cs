@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 
 #region Services
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 #endregion
 
 var app = builder.Build();

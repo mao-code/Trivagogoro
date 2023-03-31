@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trivagogoro_Backend.Controllers.User
 {
-    [Route("[controller]")]
     public class UserController : BaseController
     {
         private IUserService _userService;

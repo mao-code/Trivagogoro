@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trivagogoro_Backend.Controllers
 {
-    [Route("api/trivagogoro")]
+    [Route("api/trivagogoro/[controller]")]
     public class BaseController : Controller
     {
         public BaseController()
