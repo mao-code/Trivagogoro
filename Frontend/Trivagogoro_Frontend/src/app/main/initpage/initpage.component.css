@@ -1,0 +1,89 @@
+.my-container
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: #d2d485;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px;
+  padding-top: 60px;
+}
+
+.init-img
+{
+  aspect-ratio: 1/1;
+  width: 80%;
+}
+
+.text
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.title
+{
+  font-weight: 500;
+  margin: 10px 0;
+  font-size: 13vmin;
+}
+
+.slogan
+{
+  font-weight: 400;
+  font-size: 6vmin;
+}
+
+.btn-group
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 70px;
+}
+
+.btn-a
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.init-btn
+{
+  width: 90%;
+  border-radius: 50px;
+  font-size: 7vmin;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 10px 0;
+  text-align: center;
+  margin: 15px 0;
+  box-shadow: 2px 3px 5px 1px #5b5b5b;
+}
+
+.login
+{
+  background-color: #989d57;
+}
+
+.signup
+{
+  background-color: #d2d485;
+  border: 1px solid #414141;
+}

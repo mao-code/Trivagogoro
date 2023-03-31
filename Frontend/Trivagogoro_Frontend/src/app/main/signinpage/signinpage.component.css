@@ -1,0 +1,30 @@
+.my-container
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: #d2d485;
+}
+
+.back-btn
+{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 3px;
+
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  border: 1.5px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 4.5vmin;
+
+  text-decoration: none;
+}

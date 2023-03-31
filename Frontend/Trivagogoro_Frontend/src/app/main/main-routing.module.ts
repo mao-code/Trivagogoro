@@ -15,15 +15,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('./userpage/userpage.module').then(m => m.UserpageModule),
-      },
-      {
-        path: 'signin',
-        loadChildren: () => import('./signinpage/signinpage.module').then(m => m.SigninpageModule),
-      },
-      {
-        path: 'signup',
-        loadChildren: () => import('./signuppage/signuppage.module').then(m => m.SignuppageModule),
-      },
+      }
     ]
   }
 ];
