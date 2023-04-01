@@ -20,7 +20,7 @@ namespace Trivagogoro_Backend.Controllers.User
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp([FromBody] SignUpReq req)
         {
-            var affectedRowNums = await this._userService.SignUpUserAsync(req.User, req.UserCredential);
+            var affectedRowNums = await this._userService.SignUpUserAsync(req);
             var res = new ResponseData<SignUpRes>(200, true, $"成功註冊！影響列數{affectedRowNums}", null);
             if(affectedRowNums == 0)
             {

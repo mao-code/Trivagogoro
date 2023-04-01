@@ -15,27 +15,27 @@ namespace Trivagogoro_Backend.Services
         /// <param name="user"></param>
         /// <param name="userCredential"></param>
         /// <returns></returns>
-        public async ValueTask<int> SignUpUserAsync(User user, UserCredential userCredential)
+        public async ValueTask<int> SignUpUserAsync(SignUpReq req)
         {
             int rowAffected = 0;
 
             using (var conn = new MySqlConnection(ConnectionString))
             {
                 // test if account and passwod registered
-                string testSql = $@"SELECT account FROM UserCredential WHERE account='{userCredential.account}';";
+                string testSql = $@"SELECT account FROM UserCredential WHERE account='{req.Account}';";
                 if((await conn.QueryFirstOrDefaultAsync(testSql)) != null)
                 {
                     return 0;
                 }
 
                 // insert user
-                string userSql = $@"INSERT INTO `User`(name) VALUES('{user.name}');";
+                string userSql = $@"INSERT INTO `User`(name) VALUES('{req.Name}');";
                 rowAffected += await conn.ExecuteAsync(userSql);
 
 
                 // hash password
                 string salt = PasswordService.GenerateSalt();
-                string hasedPassword = PasswordService.HashPassword(userCredential.password, salt);
+                string hasedPassword = PasswordService.HashPassword(req.Password, salt);
 
                 // get top id user
                 User topIdUser = await this.GetTopIdUserAsync();
@@ -43,7 +43,7 @@ namespace Trivagogoro_Backend.Services
                 // insert user credential
                 string userCredentialSql = $@"
                     INSERT INTO UserCredential(userId, account, password, salt)
-                    VALUES({topIdUser.id}, '{userCredential.account}', '{hasedPassword}', '{salt}');
+                    VALUES({topIdUser.id}, '{req.Account}', '{hasedPassword}', '{salt}');
                 ";
                 rowAffected += await conn.ExecuteAsync(userCredentialSql);
 

@@ -9,16 +9,18 @@
   background-color: #d2d485;
 }
 
+.back-bar
+{
+  padding: 10px;
+}
+
 .back-btn
 {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  padding: 3px;
+  padding: 1vmin;
 
-  position: absolute;
-  left: 20px;
-  top: 20px;
   border: 1.5px solid #ffffff;
   display: flex;
   align-items: center;
@@ -27,4 +29,9 @@
   font-size: 4.5vmin;
 
   text-decoration: none;
+}
+
+.title
+{
+  margin-top: 30px;
 }

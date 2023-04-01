@@ -7,12 +7,28 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region CORS
+var LocalPolicy = "local";
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: LocalPolicy,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+        });
+});
+#endregion
+
 #region Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 #endregion
 
 var app = builder.Build();
+
+// use local CORS policy
+app.UseCors(LocalPolicy);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

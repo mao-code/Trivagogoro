@@ -5,10 +5,13 @@ namespace Trivagogoro_Backend.Models.DTO.Reqs
     public class SignUpReq
     {
         [Required]
-        public Trivagogoro_Backend.Models.User User { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
         [Required]
-        public UserCredential UserCredential { get; set; } = null!;
+        public string Account { get; set; } = null!;
+
+        [Required]
+        public string Password { get; set; } = null!;
     }
 }
 
