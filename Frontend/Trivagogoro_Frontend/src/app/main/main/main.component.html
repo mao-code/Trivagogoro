@@ -3,6 +3,29 @@
     <router-outlet></router-outlet>
   </div>
   <div class="mynav">
-
+    <a [routerLink]="['map']" (click)="activeIcon('map')">
+      <i
+        class="fa-map"
+        [ngClass]="activeList['map'] ? 'fa-solid' : 'fa-regular' "
+      ></i>
+    </a>
+    <a [routerLink]="['favorite']" (click)="activeIcon('favorite')">
+      <i
+        class="fa-heart"
+        [ngClass]="activeList['favorite'] ? 'fa-solid' : 'fa-regular' "
+      ></i>
+    </a>
+    <a [routerLink]="['explore']" (click)="activeIcon('explore')">
+      <i
+        class="fa-compass"
+        [ngClass]="activeList['explore'] ? 'fa-solid' : 'fa-regular' "
+      ></i>
+    </a>
+    <a [routerLink]="['user']" (click)="activeIcon('user')">
+      <i
+        class="fa-user"
+        [ngClass]="activeList['user'] ? 'fa-solid' : 'fa-regular' "
+      ></i>
+    </a>
   </div>
 </div>

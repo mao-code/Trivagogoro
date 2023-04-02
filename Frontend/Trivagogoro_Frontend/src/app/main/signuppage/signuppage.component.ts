@@ -3,7 +3,7 @@ import { RegisterReq } from './../../models/Requests/RegisterReq';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Subject, takeUntil, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-signuppage',
@@ -21,12 +21,14 @@ export class SignuppageComponent implements OnInit, OnDestroy{
   get email(){ return this.registerForm.get("email") }
   get password(){ return this.registerForm.get("password") }
 
+  destroy$: Subject<any>;
+
   constructor(
     private registerService: UserService,
     private router: Router
   )
   {
-
+    this.destroy$ = new Subject<null>();
   }
 
   ngOnInit(): void {
@@ -34,7 +36,8 @@ export class SignuppageComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 
   register(): void
@@ -54,6 +57,7 @@ export class SignuppageComponent implements OnInit, OnDestroy{
 
     this.registerService.register(registerDto)
     .pipe(
+      takeUntil(this.destroy$),
       catchError(err => {
         alert(err.error.message);
         return throwError(()=>err);

@@ -9,12 +9,24 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'user',
+        redirectTo: 'map',
         pathMatch: 'full'
       },
       {
         path: 'user',
         loadChildren: () => import('./userpage/userpage.module').then(m => m.UserpageModule),
+      },
+      {
+        path: 'map',
+        loadChildren: () => import('./mappage/mappage.module').then(m => m.MappageModule)
+      },
+      {
+        path: 'favorite',
+        loadChildren: () => import('./favoritepage/favoritepage.module').then(m => m.FavoritepageModule)
+      },
+      {
+        path: 'explore',
+        loadChildren: () => import('./explorepage/explorepage.module').then(m => m.ExplorepageModule)
       }
     ]
   }
