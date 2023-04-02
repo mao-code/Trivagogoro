@@ -62,6 +62,11 @@ namespace Trivagogoro_Backend.Services
                 string sql = $@"SELECT * FROM UserCredential WHERE account='{account}';";
                 UserCredential userCredential = await conn.QueryFirstOrDefaultAsync<UserCredential>(sql);
 
+                if(userCredential == null)
+                {
+                    return false;
+                }
+
                 bool isValidate = PasswordService.ValidatePassword(password, userCredential.password);
 
                 if (userCredential != null && isValidate)

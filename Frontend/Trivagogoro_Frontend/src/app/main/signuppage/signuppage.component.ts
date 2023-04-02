@@ -3,6 +3,7 @@ import { RegisterReq } from './../../models/Requests/RegisterReq';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-signuppage',
@@ -51,7 +52,14 @@ export class SignuppageComponent implements OnInit, OnDestroy{
       password: info.password!
     }
 
-    this.registerService.register(registerDto).subscribe(res => {
+    this.registerService.register(registerDto)
+    .pipe(
+      catchError(err => {
+        alert(err.error.message);
+        return throwError(()=>err);
+      })
+    )
+    .subscribe(res => {
       if(res.isSuccess)
       {
         console.log(res);

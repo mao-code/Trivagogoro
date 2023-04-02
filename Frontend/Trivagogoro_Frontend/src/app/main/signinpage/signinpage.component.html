@@ -4,4 +4,27 @@
       <i class="fa-solid fa-arrow-left"></i>
     </a>
   </div>
+  <div class="text">
+    <div class="title">
+      Welcom back
+    </div>
+    <div class="description">
+      Login to your account
+    </div>
+  </div>
+  <form class="signin-form" [formGroup]="signInForm" (ngSubmit)="signIn()">
+    <div class="input-group">
+      <div class="input-item account">
+        <i class="fa-solid fa-user"></i>
+        <input formControlName="account" type="text" placeholder="Account">
+      </div>
+      <div class="input-item password">
+        <i class="fa-solid fa-lock"></i>
+        <input formControlName="password" type="password" placeholder="Password">
+      </div>
+    </div>
+    <button class="signin-btn" type="submit">
+      LOGIN
+    </button>
+  </form>
 </div>
