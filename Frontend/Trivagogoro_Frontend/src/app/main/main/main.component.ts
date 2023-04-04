@@ -9,9 +9,9 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
   activeList: any={
-    'map': true,
+    'home': true,
+    'map': false,
     'favorite': false,
-    'explore': false,
     'user': false
   };
 

@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'map',
+        redirectTo: 'home',
         pathMatch: 'full'
       },
       {
@@ -25,8 +25,8 @@ const routes: Routes = [
         loadChildren: () => import('./favoritepage/favoritepage.module').then(m => m.FavoritepageModule)
       },
       {
-        path: 'explore',
-        loadChildren: () => import('./explorepage/explorepage.module').then(m => m.ExplorepageModule)
+        path: 'home',
+        loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule)
       }
     ]
   }

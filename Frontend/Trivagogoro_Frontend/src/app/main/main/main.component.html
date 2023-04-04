@@ -3,22 +3,23 @@
     <router-outlet></router-outlet>
   </div>
   <div class="mynav">
+    <a [routerLink]="['home']" (click)="activeIcon('home')">
+      <span nz-icon nzType="home" [nzTheme]="activeList['home'] ? 'fill' : 'outline' "></span>
+    </a>
     <a [routerLink]="['map']" (click)="activeIcon('map')">
       <i
-        class="fa-map"
+        class="fa-compass"
         [ngClass]="activeList['map'] ? 'fa-solid' : 'fa-regular' "
       ></i>
     </a>
+    <i
+      class="fa-regular fa-square-plus"
+      style="font-size: 7vmin;"
+    ></i>
     <a [routerLink]="['favorite']" (click)="activeIcon('favorite')">
       <i
         class="fa-heart"
         [ngClass]="activeList['favorite'] ? 'fa-solid' : 'fa-regular' "
-      ></i>
-    </a>
-    <a [routerLink]="['explore']" (click)="activeIcon('explore')">
-      <i
-        class="fa-compass"
-        [ngClass]="activeList['explore'] ? 'fa-solid' : 'fa-regular' "
       ></i>
     </a>
     <a [routerLink]="['user']" (click)="activeIcon('user')">
