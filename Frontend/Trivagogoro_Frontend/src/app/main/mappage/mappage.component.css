@@ -1,13 +1,69 @@
 .my-container
 {
+  position: relative;
   height: 100%;
   width: 100%;
 }
 
+.top-bar
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.back
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vmin;
+  width: 8vmin;
+  border-radius: 50%;
+  background-color: #595e19;
+  color: #ffffff;
+  padding: 8px;
+  margin: 0 15px;
+}
+.back::after
+{
+  content: "";
+  margin-top: 100%;
+}
+.search
+{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search > input
+{
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background-color: #e7e9aa;
+  padding: 10px 20px;
+  width: 90%;
+  font-size: 4vmin;
+}
+
 .map
 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 ::ng-deep .map-container

@@ -9,11 +9,30 @@
   height: 100%;
 }
 
-.mynav > a
+.mynav > a,
+.mynav > i
 {
   text-decoration: none;
-  color: #000000;
+  color: #808080;
   font-size: 7vmin;
+}
+
+.active
+{
+  color: #989d57 !important;
+  position: relative;
+}
+.active::after
+{
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3vmin;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: #989d57;
+  aspect-ratio: 1/1;
+  width: 1.2vmin;
 }
 
 .mycontent
@@ -34,7 +53,7 @@
   left: 0;
   right: 0;
   height: 20vmin;
-  background-color: #d2d485;
+  background-color: #000000;
   display: flex;
   align-items: center;
   justify-content: space-around;

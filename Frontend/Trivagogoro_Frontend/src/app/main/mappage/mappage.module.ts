@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { ShareModule } from './../../shares/share.module';
 import { MappageComponent } from './mappage.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +15,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
   imports: [
     CommonModule,
     MappageRoutingModule,
-    GoogleMapsModule
+    FormsModule,
+    GoogleMapsModule,
+    ShareModule
   ]
 })
 export class MappageModule { }

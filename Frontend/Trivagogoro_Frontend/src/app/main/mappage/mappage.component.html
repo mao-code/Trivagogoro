@@ -1,8 +1,29 @@
 <div class="my-container">
+  <div class="top-bar">
+    <div
+      *ngIf="isSearching"
+      class="back"
+    >
+      <i
+        class="fa-solid fa-arrow-left"
+        (click)="back()"
+      ></i>
+    </div>
+    <div class="search">
+      <input
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="searchKeywords"
+        (keypress)="search($event)"
+        (focus)="isSearching = true"
+        (blur)="back()"
+      >
+    </div>
+  </div>
+
   <google-map
     class="map"
-    [center]="center"
-    [zoom]="zoom"
+    [options]="options"
   >
   </google-map>
 </div>
