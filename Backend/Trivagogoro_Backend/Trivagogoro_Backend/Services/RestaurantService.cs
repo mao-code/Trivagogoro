@@ -129,6 +129,81 @@ namespace Trivagogoro_Backend.Services
 
             return affectedRowNums;
         }
+
+        public async Task<List<SearchRestaurantDTO>> SearchRestaurantAsync(string keyword)
+        {
+            var resList = new List<SearchRestaurantDTO>();
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                // search DB
+                string sql = $@"
+                    SELECT *
+                    FROM Restaurant
+                    WHERE name LIKE '%{keyword}%';
+                ";
+                var restaurants = (await conn.QueryAsync<Restaurant>(sql)).ToList();
+
+                // search Google Map for images
+                foreach(var restaurant in restaurants)
+                {
+                    var dto = new SearchRestaurantDTO();
+                    string placeId = restaurant.placeId;
+                    var images = await SearchRestaurantsImagesAsync(placeId);
+
+                    // parse dto
+                    dto.id = restaurant.id;
+                    dto.name = restaurant.name;
+                    dto.lat = restaurant.lat;
+                    dto.lng = restaurant.lng;
+                    dto.priceLevel = restaurant.priceLevel;
+                    dto.placeId = restaurant.placeId;
+                    dto.address = restaurant.address;
+                    dto.images = images;
+
+                    resList.Add(dto);
+                }
+            }
+
+            return resList;
+        }
+
+        public async Task<List<string>> SearchRestaurantsImagesAsync(string placeId)
+        {
+            var images = new List<string>();
+            
+            string placeDetailApi = $@"https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&key={ApiKey}";
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(placeDetailApi);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStreamAsync();
+                    JsonDocument responseJson = JsonDocument.Parse(responseBody);
+                    JsonElement result;
+                    if (responseJson.RootElement.TryGetProperty("result", out result))
+                    {
+                        // add image
+                        var photos = result.GetProperty("photos");
+                        if (photos.ValueKind == JsonValueKind.Array)
+                        {
+                            foreach (var image in photos.EnumerateArray())
+                            {
+                                foreach (var htmlAttr in image.GetProperty("html_attributions").EnumerateArray())
+                                {
+                                    var imgUrl = htmlAttr.ToString().Split("href=")[1].Split(">")[0]; // "https://..."
+                                    imgUrl = imgUrl.Replace("\"", "");
+                                    images.Add(imgUrl);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            return images;
+        }
     }
 }
 

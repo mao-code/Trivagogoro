@@ -28,7 +28,8 @@ namespace Trivagogoro_Backend.Controllers.Restaurant
         [HttpGet("search/{keywords}")]
         public async Task<IActionResult> SearchRestaurant([FromRoute] string keywords)
         {
-            var res = new ResponseData<object>(200, true, "成功搜尋餐廳！", null);
+            var data = await _restaurantService.SearchRestaurantAsync(keywords);
+            var res = new ResponseData<object>(200, true, "成功搜尋餐廳！", data);
             return StatusCode(res.Code, res);
         }
 
