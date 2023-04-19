@@ -1,4 +1,8 @@
 <div class="my-container">
+  <div *ngIf="isLoading" class="loading">
+    <app-loading></app-loading>
+  </div>
+
   <div class="top-bar">
     <div
       *ngIf="isSearching"
