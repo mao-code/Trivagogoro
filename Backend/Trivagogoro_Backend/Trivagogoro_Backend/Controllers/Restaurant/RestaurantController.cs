@@ -24,6 +24,20 @@ namespace Trivagogoro_Backend.Controllers.Restaurant
             var res = new ResponseData<object>(200, true, "成功紀錄所有台北市內的餐廳！", await _restaurantService.CrawlAndSaveRestaurantsAsyncWithinTaipei());
             return StatusCode(res.Code, res);
         }
+
+        [HttpGet("search/{keywords}")]
+        public async Task<IActionResult> SearchRestaurant([FromRoute] string keywords)
+        {
+            var res = new ResponseData<object>(200, true, "成功搜尋餐廳！", null);
+            return StatusCode(res.Code, res);
+        }
+
+        [HttpPost("favorite")]
+        public async Task<IActionResult> AddRestaurantToFavorite()
+        {
+            var res = new ResponseData<object>(200, true, "成功加入餐廳至最愛！", null);
+            return StatusCode(res.Code, res);
+        }
     }
 }
 

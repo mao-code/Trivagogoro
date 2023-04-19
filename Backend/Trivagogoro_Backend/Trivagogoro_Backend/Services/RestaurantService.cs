@@ -101,20 +101,29 @@ namespace Trivagogoro_Backend.Services
                 }
             }
 
-            var affectedRowNums = 0;
+            int affectedRowNums = 0;
             using (var conn = new MySqlConnection(ConnectionString))
             {
-                string deleteAllSql = "DELETE FROM Restaurant;";
-                await conn.ExecuteAsync(deleteAllSql);
-
-                foreach(var dataObj in dataObjects)
+                await conn.OpenAsync();
+                using (var tran = await conn.BeginTransactionAsync())
                 {
-                    string sql = $@"INSERT INTO Restaurant(name, lat, lng, address, placeId, priceLevel)
+                    string deleteAllSql = "DELETE FROM Restaurant;";
+                    await conn.ExecuteAsync(deleteAllSql, transaction: tran);
+
+                    foreach (var dataObj in dataObjects)
+                    {
+                        dataObj.name = dataObj.name.Replace("'", "\\'");
+                        string sql = $@"INSERT INTO Restaurant(name, lat, lng, address, placeId, priceLevel)
                                     VALUES('{dataObj.name}', {dataObj.lat}, {dataObj.lng}, '{dataObj.address}', '{dataObj.placeId}', {dataObj.priceLevel});";
 
-                    int num = await conn.ExecuteAsync(sql);
-                    affectedRowNums += num;
+                        int num = await conn.ExecuteAsync(sql, transaction: tran);
+                        affectedRowNums += num;
+                        
+                    }
+
+                    await tran.CommitAsync();
                 }
+                    
             }
             #endregion
 

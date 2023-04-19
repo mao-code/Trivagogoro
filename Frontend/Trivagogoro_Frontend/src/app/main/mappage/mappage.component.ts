@@ -27,7 +27,7 @@ export class MappageComponent {
   {
     if(event.key == "Enter")
     {
-      // search with keywords
+      // search with keywords (with only the restaurants in taipei i.e. in DB)
       console.log(this.searchKeywords);
     }
   }
