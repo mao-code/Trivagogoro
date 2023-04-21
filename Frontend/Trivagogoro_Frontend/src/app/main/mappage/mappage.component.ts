@@ -1,5 +1,6 @@
+import { AnimateTimings } from '@angular/animations';
 import { Component, OnDestroy } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
 @Component({
@@ -12,12 +13,22 @@ export class MappageComponent implements OnDestroy {
   destroy$: Subject<null>;
   isLoading: boolean;
 
+  // map settings
   options: google.maps.MapOptions = {
-    center: { lat: 24.9879, lng: 121.5774 },   // NCCU
-    zoom: 17,
+    // center: { lat: 24.9879, lng: 121.5774 },   // NCCU
+    // zoom: 16,
     mapTypeControl: false,
     fullscreenControl: false
   };
+
+  center: any = { lat: 24.9879, lng: 121.5774 } // NCCU
+  zoom: number = 16;
+
+  // marker settings
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false
+  };
+  markerPositions: google.maps.LatLngLiteral[] = [];
 
   searchKeywords: string = "";
   isSearching: boolean = false;
@@ -36,12 +47,37 @@ export class MappageComponent implements OnDestroy {
       this.isLoading = true;
       this.restaurantService.searchRestaurant(this.searchKeywords)
       .pipe(
-        takeUntil(this.destroy$)
+        takeUntil(this.destroy$),
+        catchError(err => {
+          alert(err.error.message);
+          return throwError(()=>err);
+        })
       ).subscribe(res => {
         console.log(res);
         this.isLoading = false;
+
+        // mark location
+        this.markerPositions = [];
+        for(let loc of res.data!)
+        {
+          this.addMarker(loc.lat, loc.lng);
+        }
+
+        // rezoom and recenter
+        this.zoom = 13;
+        this.center = this.markerPositions[Math.floor(Math.random()*this.markerPositions.length)]
+
+        alert(`成功搜尋${res.data?.length}個結果！`)
       });
     }
+  }
+
+  addMarker(lat: number, lng: number)
+  {
+    this.markerPositions.push({
+      lat: lat,
+      lng: lng
+    });
   }
 
   back()

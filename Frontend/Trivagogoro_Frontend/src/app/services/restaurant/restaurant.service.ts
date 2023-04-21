@@ -16,8 +16,8 @@ export class RestaurantService {
     this.baseURI = `${environment.domain}/${environment.baseRoute.restaurant}`;
   }
 
-  searchRestaurant(keywords: string): Observable<ResponseData<SearchRestaurantRes>>
+  searchRestaurant(keywords: string): Observable<ResponseData<SearchRestaurantRes[]>>
   {
-    return this.http.get<ResponseData<SearchRestaurantRes>>(`${this.baseURI}/search/${keywords}`);
+    return this.http.get<ResponseData<SearchRestaurantRes[]>>(`${this.baseURI}/search/${keywords}`);
   }
 }

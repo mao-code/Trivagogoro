@@ -28,6 +28,14 @@
   <google-map
     class="map"
     [options]="options"
+    [center]="center"
+    [zoom]="zoom"
   >
+    <map-marker
+      *ngFor="let markerPosition of markerPositions"
+      [position]="markerPosition"
+      [options]="markerOptions"
+    ></map-marker>
   </google-map>
+
 </div>

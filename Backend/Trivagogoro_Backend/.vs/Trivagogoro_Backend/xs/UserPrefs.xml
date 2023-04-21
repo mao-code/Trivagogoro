@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{D5F84B70-00D1-49F0-AE54-3B831B5DB25A}|http">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Trivagogoro__Backend PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Trivagogoro__Backend PreferredExecutionTarget="/Applications/Brave Browser.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="Trivagogoro_Backend/Controllers/Restaurant/RestaurantController.cs">
     <Files>
@@ -21,15 +21,15 @@
       <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/SignInReq.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reses/SignInRes.cs" />
       <File FileName="Trivagogoro_Backend/Services/PasswordService.cs" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/SignInDTO.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/SignInDTO.cs" />
       <File FileName="Trivagogoro_Backend/Controllers/Restaurant/RestaurantController.cs" Line="32" Column="74" />
       <File FileName="Trivagogoro_Backend/Services/Contract/IRestaurantService.cs" />
-      <File FileName="Trivagogoro_Backend/Services/RestaurantService.cs" Line="170" Column="85" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/RestaurantDTO.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/RestaurantService.cs" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/RestaurantDTO.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/ResponseData.cs" />
       <File FileName="Trivagogoro_Backend/Models/Restaurant.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/SignUpReq.cs" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/SearchRestaurantDTO.cs" Line="6" Column="9" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/SearchRestaurantDTO.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
