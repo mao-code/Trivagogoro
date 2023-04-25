@@ -20,22 +20,22 @@
     <None Remove="Controllers\" />
     <None Remove="Controllers\User\" />
     <None Remove="Controllers\Restaurant\" />
-    <None Remove="Controllers\Favorite\" />
     <None Remove="Models\" />
     <None Remove="Services\" />
     <None Remove="Services\Contract\" />
     <None Remove="Models\DTO\" />
     <None Remove="Services\DTO\" />
+    <None Remove="Controllers\Social\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Controllers\User\" />
     <Folder Include="Controllers\Restaurant\" />
-    <Folder Include="Controllers\Favorite\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Contract\" />
     <Folder Include="Models\DTO\" />
     <Folder Include="Services\DTO\" />
+    <Folder Include="Controllers\Social\" />
   </ItemGroup>
 </Project>

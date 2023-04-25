@@ -24,14 +24,14 @@ namespace Trivagogoro_Backend.Services
                 using (var tran = await conn.BeginTransactionAsync())
                 {
                     // test if account and passwod registered
-                    string testSql = $@"SELECT account FROM UserCredential WHERE account='{req.Account}';";
+                    string testSql = $@"SELECT account FROM USERCREDENTIAL WHERE account='{req.Account}';";
                     if ((await conn.QueryFirstOrDefaultAsync(testSql)) != null)
                     {
                         return 0;
                     }
 
                     // insert user
-                    string userSql = $@"INSERT INTO `User`(name) VALUES('{req.Name}');";
+                    string userSql = $@"INSERT INTO `USER`(name) VALUES('{req.Name}');";
                     rowAffected += await conn.ExecuteAsync(userSql, tran);
 
 
@@ -44,7 +44,7 @@ namespace Trivagogoro_Backend.Services
 
                     // insert user credential
                     string userCredentialSql = $@"
-                    INSERT INTO UserCredential(userId, account, password, salt)
+                    INSERT INTO USERCREDENTIAL(userId, account, password, salt)
                     VALUES({topIdUser.id}, '{req.Account}', '{hasedPassword}', '{salt}');
                     ";
                     rowAffected += await conn.ExecuteAsync(userCredentialSql, tran);

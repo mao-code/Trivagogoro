@@ -1,3 +1,4 @@
+import { SearchRestaurantRes } from 'src/app/models/Responses/SearchRestaurantRes';
 import { AnimateTimings } from '@angular/animations';
 import { Component, OnDestroy } from '@angular/core';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
@@ -32,6 +33,8 @@ export class MappageComponent implements OnDestroy {
 
   searchKeywords: string = "";
   isSearching: boolean = false;
+  searchResult: SearchRestaurantRes[] = [];
+  isOpenDetailWindow: boolean = false;
 
   constructor(private restaurantService: RestaurantService)
   {
@@ -45,6 +48,7 @@ export class MappageComponent implements OnDestroy {
     {
       // search with keywords (with only the restaurants in taipei i.e. in DB)
       this.isLoading = true;
+      this.isSearching = true;
       this.restaurantService.searchRestaurant(this.searchKeywords)
       .pipe(
         takeUntil(this.destroy$),
@@ -55,6 +59,8 @@ export class MappageComponent implements OnDestroy {
       ).subscribe(res => {
         console.log(res);
         this.isLoading = false;
+
+        this.searchResult = res.data!;
 
         // mark location
         this.markerPositions = [];
@@ -78,6 +84,22 @@ export class MappageComponent implements OnDestroy {
       lat: lat,
       lng: lng
     });
+  }
+
+  clickMarker(markerPosition: google.maps.LatLngLiteral)
+  {
+    // open detail information
+    // 1. get detail via position
+    var detail = this.searchResult.find(_ => _.lat == markerPosition.lat && _.lng == markerPosition.lng);
+    console.log(detail);
+
+    // 2. open info window
+    this.isOpenDetailWindow = true;
+  }
+  closeOpenWindow()
+  {
+    this.isOpenDetailWindow = false;
+    this.searchResult = [];
   }
 
   back()

@@ -34,8 +34,9 @@ namespace Trivagogoro_Backend.Controllers.Restaurant
         }
 
         [HttpPost("favorite")]
-        public async Task<IActionResult> AddRestaurantToFavorite()
+        public async Task<IActionResult> AddRestaurantToFavorite([FromBody] AddRestaurantToFavoriteReq req)
         {
+            await _restaurantService.AddRastaurantToFavoriteAsync(req);
             var res = new ResponseData<object>(200, true, "成功加入餐廳至最愛！", null);
             return StatusCode(res.Code, res);
         }

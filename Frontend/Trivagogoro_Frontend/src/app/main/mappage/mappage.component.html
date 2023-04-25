@@ -35,6 +35,7 @@
       *ngFor="let markerPosition of markerPositions"
       [position]="markerPosition"
       [options]="markerOptions"
+      (mapClick) = "clickMarker(markerPosition)"
     ></map-marker>
   </google-map>
 

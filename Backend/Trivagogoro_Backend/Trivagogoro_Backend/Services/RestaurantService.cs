@@ -12,6 +12,23 @@ namespace Trivagogoro_Backend.Services
         {
         }
 
+        public async Task AddRastaurantToFavoriteAsync(AddRestaurantToFavoriteReq req)
+        {
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                await conn.OpenAsync();
+                using (var tran = await conn.BeginTransactionAsync())
+                {
+                    string sql = $@"
+INSERT INTO FAVORITE(userId, restaurantId, selfRating)
+VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
+";
+                    await conn.ExecuteAsync(sql);
+                    await tran.CommitAsync();
+                }
+            }
+        }
+
         public async ValueTask<int> CrawlAndSaveRestaurantsAsyncWithinTaipei()
         {
             #region Google Map API
@@ -113,7 +130,7 @@ namespace Trivagogoro_Backend.Services
                     foreach (var dataObj in dataObjects)
                     {
                         dataObj.name = dataObj.name.Replace("'", "\\'");
-                        string sql = $@"INSERT INTO Restaurant(name, lat, lng, address, placeId, priceLevel)
+                        string sql = $@"INSERT INTO RESTAURANT(name, lat, lng, address, placeId, priceLevel)
                                     VALUES('{dataObj.name}', {dataObj.lat}, {dataObj.lng}, '{dataObj.address}', '{dataObj.placeId}', {dataObj.priceLevel});";
 
                         int num = await conn.ExecuteAsync(sql, transaction: tran);

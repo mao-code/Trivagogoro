@@ -23,6 +23,7 @@ builder.Services.AddCors(opt =>
 #region Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<ISocialService, SocialService>();
 #endregion
 
 var app = builder.Build();
