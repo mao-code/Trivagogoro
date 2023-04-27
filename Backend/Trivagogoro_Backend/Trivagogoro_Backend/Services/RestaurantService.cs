@@ -206,12 +206,9 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
                         {
                             foreach (var image in photos.EnumerateArray())
                             {
-                                foreach (var htmlAttr in image.GetProperty("html_attributions").EnumerateArray())
-                                {
-                                    var imgUrl = htmlAttr.ToString().Split("href=")[1].Split(">")[0]; // "https://..."
-                                    imgUrl = imgUrl.Replace("\"", "");
-                                    images.Add(imgUrl);
-                                }
+                                string imgReference = image.GetProperty("photo_reference").ToString();
+                                string imgUrl = $"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={imgReference}&key={ApiKey}";
+                                images.Add(imgUrl);
                             }
                         }
                     }

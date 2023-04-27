@@ -1,13 +1,40 @@
 <div class="my-container">
+  <div class="back-btn">
+    <div class="back">
+      <i
+        class="fa-solid fa-xmark"
+        (click)="close()"
+      ></i>
+    </div>
+  </div>
   <div class="top-bar">
     <div class="res-info">
-
+      <div class="avatar">
+        <img [src]="resInfo.images[0]" alt="avatar">
+      </div>
+      <div class="info">
+        <div class="name">{{ resInfo.name }}</div>
+        <div class="address">{{ resInfo.address }}</div>
+      </div>
     </div>
-    <div class="archieve-btn">
-
+    <div class="archive-btn">
+      <div class="archive">
+        <i
+          class="fa-regular fa-heart"
+        ></i>
+      </div>
     </div>
   </div>
   <div class="res-content">
-
+    <div class="photos container">
+      <div class="row">
+        <div
+          *ngFor="let img of resInfo.images"
+          class="img col-4 col-md-3 col-lg-2 g-1"
+        >
+          <img [src]="img" alt="img">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

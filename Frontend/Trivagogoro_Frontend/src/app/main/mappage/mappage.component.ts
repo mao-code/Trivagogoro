@@ -35,6 +35,8 @@ export class MappageComponent implements OnDestroy {
   isSearching: boolean = false;
   searchResult: SearchRestaurantRes[] = [];
   isOpenDetailWindow: boolean = false;
+  isSpandInfoWindow: boolean = false;
+  focusMarker?: SearchRestaurantRes;
 
   constructor(private restaurantService: RestaurantService)
   {
@@ -57,13 +59,15 @@ export class MappageComponent implements OnDestroy {
           return throwError(()=>err);
         })
       ).subscribe(res => {
+        this.searchResult = [];
+        this.markerPositions = [];
+
         console.log(res);
         this.isLoading = false;
 
         this.searchResult = res.data!;
 
         // mark location
-        this.markerPositions = [];
         for(let loc of res.data!)
         {
           this.addMarker(loc.lat, loc.lng);
@@ -93,13 +97,23 @@ export class MappageComponent implements OnDestroy {
     var detail = this.searchResult.find(_ => _.lat == markerPosition.lat && _.lng == markerPosition.lng);
     console.log(detail);
 
-    // 2. open info window
+    // 2. rezoom and recenter
+    this.center = markerPosition;
+    this.zoom = 16;
+
+    // 3. open info window
+    this.focusMarker = detail;
     this.isOpenDetailWindow = true;
   }
-  closeOpenWindow()
+  closeOpenWindow($event: boolean)
   {
-    this.isOpenDetailWindow = false;
-    this.searchResult = [];
+    this.isOpenDetailWindow = !$event;
+    this.focusMarker = undefined;
+    this.isSpandInfoWindow = false;
+  }
+  spandInfo()
+  {
+    this.isSpandInfoWindow = !this.isSpandInfoWindow;
   }
 
   back()
