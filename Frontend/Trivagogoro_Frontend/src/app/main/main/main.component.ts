@@ -1,13 +1,14 @@
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
   activeList: any={
     'home': true,
     'map': false,
@@ -18,11 +19,21 @@ export class MainComponent {
   destroy$: Subject<null>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   )
   {
     this.destroy$ = new Subject<null>();
+  }
 
+  ngOnInit(): void {
+    for(let key in this.activeList)
+    {
+      if(this.activeList[key])
+      {
+        this.router.navigate([`main/${key}`]);
+      }
+    }
   }
 
   activeIcon(type: string): void

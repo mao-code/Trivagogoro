@@ -1,15 +1,17 @@
 import { SearchRestaurantRes } from 'src/app/models/Responses/SearchRestaurantRes';
 import { AnimateTimings } from '@angular/animations';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { GetAllFavoriteRestaurantsDTO } from 'src/app/models/Responses/GetAllFavoriteRestaurantsRes';
 
 @Component({
   selector: 'app-mappage',
   templateUrl: './mappage.component.html',
   styleUrls: ['./mappage.component.css']
 })
-export class MappageComponent implements OnDestroy {
+export class MappageComponent implements OnDestroy, OnInit {
   // tutorial here: https://www.c-sharpcorner.com/article/how-to-integrate-google-maps-in-angular-14-app/
   destroy$: Subject<null>;
   isLoading: boolean;
@@ -33,15 +35,24 @@ export class MappageComponent implements OnDestroy {
 
   searchKeywords: string = "";
   isSearching: boolean = false;
+
   searchResult: SearchRestaurantRes[] = [];
+
   isOpenDetailWindow: boolean = false;
   isSpandInfoWindow: boolean = false;
   focusMarker?: SearchRestaurantRes;
 
-  constructor(private restaurantService: RestaurantService)
+  constructor(
+    private restaurantService: RestaurantService,
+    private userService: UserService
+  )
   {
     this.isLoading = false;
     this.destroy$ = new Subject<null>();
+  }
+
+  ngOnInit(): void {
+
   }
 
   search(event: KeyboardEvent)
@@ -59,6 +70,7 @@ export class MappageComponent implements OnDestroy {
           return throwError(()=>err);
         })
       ).subscribe(res => {
+        this.isSpandInfoWindow = false;
         this.searchResult = [];
         this.markerPositions = [];
 
@@ -111,9 +123,9 @@ export class MappageComponent implements OnDestroy {
     this.focusMarker = undefined;
     this.isSpandInfoWindow = false;
   }
-  spandInfo()
+  spandInfo($event: boolean)
   {
-    this.isSpandInfoWindow = !this.isSpandInfoWindow;
+    this.isSpandInfoWindow = $event;
   }
 
   back()

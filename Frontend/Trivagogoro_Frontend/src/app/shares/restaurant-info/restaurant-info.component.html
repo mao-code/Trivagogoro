@@ -1,6 +1,9 @@
 <div class="my-container">
   <div class="back-btn">
-    <div class="back">
+    <div
+      class="back"
+      (click)="spanOrClose()"
+    >
       <i
         class="fa-solid fa-xmark"
         (click)="close()"
@@ -20,7 +23,9 @@
     <div class="archive-btn">
       <div class="archive">
         <i
-          class="fa-regular fa-heart"
+          [ngClass]=" !isFav ? 'fa-regular' : 'fa-solid' "
+          class="fa-heart"
+          (click)="addToFavorite(5)"
         ></i>
       </div>
     </div>

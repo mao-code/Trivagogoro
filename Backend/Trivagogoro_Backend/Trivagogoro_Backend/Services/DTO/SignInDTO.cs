@@ -3,7 +3,8 @@ namespace Trivagogoro_Backend.Services.DTO
 {
     public class SignInDTO
     {
-        public string accessToken { get; set; } = "";
+        public bool IsSuccess { get; set; }
+        public int UserId { get; set; }
     }
 }
 

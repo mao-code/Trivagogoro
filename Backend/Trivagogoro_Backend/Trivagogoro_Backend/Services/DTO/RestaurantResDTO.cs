@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Trivagogoro_Backend.Services.DTO
 {
-    public class SearchRestaurantDTO
+    public class RestaurantResDTO
     {
         public int? id { get; set; }
         public string name { get; set; } = "";
@@ -11,7 +11,6 @@ namespace Trivagogoro_Backend.Services.DTO
         public string placeId { get; set; } = "";
         public int priceLevel { get; set; }
         public int? favId { get; set; }
-        public List<string> images { get; set; } = new List<string>(); // from google map api
     }
 }
 

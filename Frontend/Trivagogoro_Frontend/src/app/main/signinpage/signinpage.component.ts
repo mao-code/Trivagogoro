@@ -58,6 +58,9 @@ export class SigninpageComponent implements OnDestroy {
     )
     .subscribe(res => {
       alert(res.message);
+
+      this.userService.setUserId(res.data?.userId!);
+
       if(res.isSuccess)
       {
         this.userService.isLoggedIn = true;

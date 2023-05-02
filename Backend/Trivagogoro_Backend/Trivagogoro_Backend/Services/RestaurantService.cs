@@ -16,14 +16,28 @@ namespace Trivagogoro_Backend.Services
         {
             using (var conn = new MySqlConnection(ConnectionString))
             {
+                string sql = $"SELECT selfRating FROM FAVORITE WHERE userId={req.UserId} AND restaurantId={req.RestaurantId}";
+                var tryFav = (await conn.QueryAsync<Favorite>(sql)).FirstOrDefault();
+
                 await conn.OpenAsync();
                 using (var tran = await conn.BeginTransactionAsync())
-                {
-                    string sql = $@"
+                {                   
+                    if(tryFav != null)
+                    {
+                        sql = $@"
+DELETE FROM FAVORITE
+WHERE userId={req.UserId} AND restaurantId={req.RestaurantId}
+";
+                    }
+                    else
+                    {
+                        sql = $@"
 INSERT INTO FAVORITE(userId, restaurantId, selfRating)
 VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
 ";
-                    await conn.ExecuteAsync(sql);
+                    }
+                    
+                    await conn.ExecuteAsync(sql, transaction: tran);
                     await tran.CommitAsync();
                 }
             }
@@ -42,7 +56,7 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
             var res = new List<JsonElement>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/nearbysearch/");
+                client.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
                
                 var response = await client.GetAsync(placeApi);
                 
@@ -147,6 +161,23 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
             return affectedRowNums;
         }
 
+        public async Task<List<GetAllFavoriteRestaurantDTO>> GetAllFavoriteRestaurantsAsync(int userId)
+        {
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                string sql = $@"
+SELECT f.id AS favId, f.selfRating AS selfRating, r.id AS resId, r.name AS resName
+FROM FAVORITE f
+INNER JOIN RESTAURANT r
+ON f.restaurantId = r.id
+WHERE f.userId = {userId};";
+
+                var dto = (await conn.QueryAsync<GetAllFavoriteRestaurantDTO>(sql)).ToList();
+
+                return dto;
+            }
+        }
+
         public async Task<List<SearchRestaurantDTO>> SearchRestaurantAsync(string keyword)
         {
             var resList = new List<SearchRestaurantDTO>();
@@ -154,11 +185,13 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
             {
                 // search DB
                 string sql = $@"
-                    SELECT *
-                    FROM Restaurant
+                    SELECT r.*, f.id AS favId
+                    FROM RESTAURANT r
+                    LEFT JOIN FAVORITE f
+                    ON r.id = f.restaurantId
                     WHERE name LIKE '%{keyword}%';
                 ";
-                var restaurants = (await conn.QueryAsync<Restaurant>(sql)).ToList();
+                var restaurants = (await conn.QueryAsync<RestaurantResDTO>(sql)).ToList();
 
                 // search Google Map for images
                 foreach(var restaurant in restaurants)
@@ -175,6 +208,7 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
                     dto.priceLevel = restaurant.priceLevel;
                     dto.placeId = restaurant.placeId;
                     dto.address = restaurant.address;
+                    dto.favId = restaurant.favId;
                     dto.images = images;
 
                     resList.Add(dto);
@@ -191,28 +225,37 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
             string placeDetailApi = $@"https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&key={ApiKey}";
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync(placeDetailApi);
-
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var responseBody = await response.Content.ReadAsStreamAsync();
-                    JsonDocument responseJson = JsonDocument.Parse(responseBody);
-                    JsonElement result;
-                    if (responseJson.RootElement.TryGetProperty("result", out result))
+                    client.Timeout = TimeSpan.FromMinutes(10);
+                    var response = await client.GetAsync(placeDetailApi);
+                    if (response.IsSuccessStatusCode)
                     {
-                        // add image
-                        var photos = result.GetProperty("photos");
-                        if (photos.ValueKind == JsonValueKind.Array)
+                        var responseBody = await response.Content.ReadAsStreamAsync();
+                        JsonDocument responseJson = JsonDocument.Parse(responseBody);
+                        JsonElement result;
+                        if (responseJson.RootElement.TryGetProperty("result", out result))
                         {
-                            foreach (var image in photos.EnumerateArray())
+                            // add image
+                            var photos = result.GetProperty("photos");
+                            if (photos.ValueKind == JsonValueKind.Array)
                             {
-                                string imgReference = image.GetProperty("photo_reference").ToString();
-                                string imgUrl = $"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={imgReference}&key={ApiKey}";
-                                images.Add(imgUrl);
+                                foreach (var image in photos.EnumerateArray())
+                                {
+                                    string imgReference = image.GetProperty("photo_reference").ToString();
+                                    string imgUrl = $"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference={imgReference}&key={ApiKey}";
+                                    images.Add(imgUrl);
+                                }
                             }
                         }
                     }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                
             }
 
 

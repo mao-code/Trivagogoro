@@ -57,19 +57,24 @@ namespace Trivagogoro_Backend.Services
             return rowAffected;
         }
 
-        public async ValueTask<bool> SignInUserAsync(string account, string password)
+        public async Task<SignInDTO> SignInUserAsync(string account, string password)
         {
             bool isSuccess = false;
+            UserCredential userCredential;
 
             using (var conn = new MySqlConnection(ConnectionString))
             {
 
                 string sql = $@"SELECT * FROM UserCredential WHERE account='{account}';";
-                UserCredential userCredential = await conn.QueryFirstOrDefaultAsync<UserCredential>(sql);
+                userCredential = await conn.QueryFirstOrDefaultAsync<UserCredential>(sql);
 
                 if(userCredential == null)
                 {
-                    return false;
+                    return new SignInDTO()
+                    {
+                        IsSuccess = false,
+                        UserId = 0
+                    };
                 }
 
                 bool isValidate = PasswordService.ValidatePassword(password, userCredential.password);
@@ -80,7 +85,11 @@ namespace Trivagogoro_Backend.Services
                 }
             }
 
-            return isSuccess;
+            return new SignInDTO()
+            {
+                IsSuccess = isSuccess,
+                UserId = userCredential!.userId ?? 0
+            };
         }
 
         public async Task<User> GetTopIdUserAsync()

@@ -26,6 +26,7 @@
     <None Remove="Models\DTO\" />
     <None Remove="Services\DTO\" />
     <None Remove="Controllers\Social\" />
+    <None Remove="Controllers\FavoriteManager\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -37,5 +38,6 @@
     <Folder Include="Models\DTO\" />
     <Folder Include="Services\DTO\" />
     <Folder Include="Controllers\Social\" />
+    <Folder Include="Controllers\FavoriteManager\" />
   </ItemGroup>
 </Project>

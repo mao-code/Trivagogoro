@@ -7,5 +7,6 @@ export interface SearchRestaurantRes
   address: string,
   placeId: string,
   priceLevel: number,
+  favId?: number,
   images: string[],
 }

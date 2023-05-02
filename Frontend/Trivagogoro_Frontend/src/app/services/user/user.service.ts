@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseData } from 'src/app/models/ResponseData';
 import { RegisterReq } from 'src/app/models/Requests/RegisterReq';
 import { Observable } from 'rxjs';
+import { SigninRes } from 'src/app/models/Responses/SigninRes';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,18 @@ export class UserService {
     return this.http.post<ResponseData<null>>(`${this.baseURI}/signup`, req);
   }
 
-  signIn(req: SignInReq): Observable<ResponseData<null>>
+  signIn(req: SignInReq): Observable<ResponseData<SigninRes>>
   {
-    return this.http.post<ResponseData<null>>(`${this.baseURI}/signin`, req);
+    return this.http.post<ResponseData<SigninRes>>(`${this.baseURI}/signin`, req);
+  }
+
+  setUserId(userId: number)
+  {
+    localStorage.setItem("userId", userId.toString());
+  }
+
+  getUserId(): number
+  {
+    return Number.parseInt(localStorage.getItem("userId")!);
   }
 }

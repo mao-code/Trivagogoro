@@ -15,6 +15,9 @@
   text-decoration: none;
   color: #808080;
   font-size: 7vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .active

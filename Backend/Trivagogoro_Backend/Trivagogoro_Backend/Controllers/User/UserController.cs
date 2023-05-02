@@ -33,9 +33,13 @@ namespace Trivagogoro_Backend.Controllers.User
         [HttpPost("signin")]
         public async Task<IActionResult> SignIn([FromBody] SignInReq req)
         {
-            bool isSuccess = await this._userService.SignInUserAsync(req.Account, req.Password);
-            var res = new ResponseData<SignInRes>(200, true, $"登入成功！", null);
-            if(!isSuccess)
+            SignInDTO dto = await this._userService.SignInUserAsync(req.Account, req.Password);
+            var res = new ResponseData<SignInRes>(200, true, $"登入成功！", new SignInRes()
+            {
+                UserId = dto.UserId
+            });
+
+            if(!dto.IsSuccess)
             {
                 res = new ResponseData<SignInRes>(404, false, "登入失敗！", null);
             }

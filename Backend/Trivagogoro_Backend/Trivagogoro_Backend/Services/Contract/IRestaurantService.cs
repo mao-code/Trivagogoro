@@ -9,6 +9,7 @@ namespace Trivagogoro_Backend.Services.Contract
         Task<List<string>> SearchRestaurantsImagesAsync(string placeId);
         Task<List<SearchRestaurantDTO>> SearchRestaurantAsync(string keyword);
         Task AddRastaurantToFavoriteAsync(AddRestaurantToFavoriteReq req);
+        Task<List<GetAllFavoriteRestaurantDTO>> GetAllFavoriteRestaurantsAsync(int userId);
     }
 }
 

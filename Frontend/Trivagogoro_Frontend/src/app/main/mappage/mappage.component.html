@@ -40,7 +40,6 @@
     <div
       *ngIf="isOpenDetailWindow"
       class="marker-info"
-      (click)="spandInfo()"
       [ngStyle]="{
         'height': isSpandInfoWindow ? '80%' : '55%'
       }"
@@ -48,6 +47,7 @@
       <app-restaurant-info
         *ngIf="focusMarker"
         (close)="closeOpenWindow($event)"
+        (spanOrclose)="spandInfo($event)"
         [resInfo]="focusMarker"
       ></app-restaurant-info>
     </div>
