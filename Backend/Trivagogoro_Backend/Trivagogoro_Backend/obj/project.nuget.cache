@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mi1LNUthDISBKoNyOkS6TvadTjBi30VQ3tQR6Unt7qRROk1NvE/dc4qKbYZ7zz3wiy7098+FDWVJO3inkgk6bg==",
+  "dgSpecHash": "NpvcKybenISefEk+AJRnU5BpyxVaYS07qZYhjMfSMOKa3zgkI5i7umBYX5suTNZWFmj5Fjlfzs5jbCQ3BLJzKQ==",
   "success": true,
   "projectFilePath": "/Users/maoxunhuang/Desktop/trivagogoro/Backend/Trivagogoro_Backend/Trivagogoro_Backend/Trivagogoro_Backend.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,7 @@
     "/Users/maoxunhuang/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/Users/maoxunhuang/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "/Users/maoxunhuang/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
-    "/Users/maoxunhuang/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
+    "/Users/maoxunhuang/.nuget/packages/mysqlconnector/2.2.6/mysqlconnector.2.2.6.nupkg.sha512",
     "/Users/maoxunhuang/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/maoxunhuang/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/maoxunhuang/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

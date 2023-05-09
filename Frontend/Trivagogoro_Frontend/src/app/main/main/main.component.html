@@ -16,10 +16,12 @@
         [ngClass]="activeList['map'] ? 'fa-solid active' : 'fa-regular' "
       ></i>
     </a>
-    <i
-      class="fa-regular fa-square-plus"
-      style="font-size: 7vmin;"
-    ></i>
+    <a [routerLink]="['posting']" (click)="activeIcon('posting')">
+      <i
+        class="fa-regular fa-square-plus"
+        style="font-size: 7vmin;"
+      ></i>
+    </a>
     <a [routerLink]="['favorite']" (click)="activeIcon('favorite')">
       <i
         class="fa-heart"

@@ -21,7 +21,19 @@ namespace Trivagogoro_Backend.Controllers.Social
         public async Task<IActionResult> PostFavoriteRestaurant([FromBody] PostRestaurantReq req)
         {
             await _socialService.PostingRestaurantPostAsync(req);
-            var res = new ResponseData<SignUpRes>(200, true, $"發文成功！", null);
+            var res = new ResponseData<Object>(200, true, $"發文成功！", null);
+            return StatusCode(res.Code, res);
+        }
+
+        [HttpGet("posted/{userId}")]
+        public async Task<IActionResult> GetPostedPost([FromRoute] int userId)
+        {
+            var dto = await _socialService.GetPostedPostRestAsync(userId);
+            var res = new ResponseData<GetPostedPostResRest>(200, true, "Get posted post restaurant successfully!", new GetPostedPostResRest()
+            {
+                PostedPostRest = dto
+            });
+
             return StatusCode(res.Code, res);
         }
     }

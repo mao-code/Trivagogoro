@@ -1,0 +1,49 @@
+<div class="my-container">
+  <div *ngIf="isLoading" class="loading">
+    <app-loading></app-loading>
+  </div>
+
+  <div class="top-bar">
+    <div class="back">
+      <i class="fa-regular fa-rectangle-xmark" (click)="back()"></i>
+    </div>
+    <div class="txt">NEW POST</div>
+    <div
+      *ngIf="!isNext"
+      class="done"
+      (click)="next()"
+    >NEXT</div>
+
+    <div
+    *ngIf="isNext"
+    class="done"
+    (click)="post()"
+    >POST</div>
+  </div>
+  <div
+    class="overview"
+    [ngStyle]="{
+      'background-image': 'url('+activeImage+')'
+    }"
+  ></div>
+  <div class="fav-list container-fluid">
+    <div *ngIf="!isNext" class="row">
+      <div
+        class="fav col-4"
+        *ngFor="let fav of favList"
+        [ngStyle]="{
+          'background-image': 'url('+fav.images[0]+')'
+        }"
+        (click)="clickActiveImage(fav.images[0])"
+      >
+      <div class="mask" *ngIf="activeImage == fav.images[0]"></div>
+      </div>
+    </div>
+
+    <div *ngIf="isNext" class="next-desc">
+      <textarea cols="30" rows="10" placeholder="Add some description" [(ngModel)]="description">
+
+      </textarea>
+    </div>
+  </div>
+</div>

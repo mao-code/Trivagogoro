@@ -14,6 +14,9 @@ namespace Trivagogoro_Backend.Models.DTO.Reqs
 
         [Required]
         public int SourceId { get; set; }
+
+        [Required]
+        public int userId { get; set; }
     }
 }
 

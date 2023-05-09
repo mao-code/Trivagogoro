@@ -106,7 +106,7 @@
           }
         }
       },
-      "MySqlConnector/2.2.5": {
+      "MySqlConnector/2.2.6": {
         "type": "package",
         "compile": {
           "lib/net7.0/MySqlConnector.dll": {
@@ -552,10 +552,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "MySqlConnector/2.2.5": {
-      "sha512": "6sinY78RvryhHwpup3awdjYO7d5hhWahb5p/1VDODJhSxJggV/sBbYuKK5IQF9TuzXABiddqUbmRfM884tqA3Q==",
+    "MySqlConnector/2.2.6": {
+      "sha512": "oYHl9TNhJXBEqfuiaEsOdBPkdULOcCCbqZJzYhy0rtREnMVoluG73GM8+gwBCMb1vbjv9K1ehQnhe0cxdxfOCA==",
       "type": "package",
-      "path": "mysqlconnector/2.2.5",
+      "path": "mysqlconnector/2.2.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -575,7 +575,7 @@
         "lib/netstandard2.1/MySqlConnector.dll",
         "lib/netstandard2.1/MySqlConnector.xml",
         "logo.png",
-        "mysqlconnector.2.2.5.nupkg.sha512",
+        "mysqlconnector.2.2.6.nupkg.sha512",
         "mysqlconnector.nuspec"
       ]
     },
@@ -676,7 +676,7 @@
       "Dapper >= 2.0.123",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
-      "MySqlConnector >= 2.2.5",
+      "MySqlConnector >= 2.2.6",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -737,7 +737,7 @@
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.2.5, )"
+            "version": "[2.2.6, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

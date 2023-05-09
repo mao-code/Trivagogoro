@@ -4,5 +4,6 @@ export const environment = {
   baseRoute: {
     restaurant: "Restaurant",
     user: "User",
+    social: "Social"
   }
 };

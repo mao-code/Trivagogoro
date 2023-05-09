@@ -13,7 +13,8 @@ export class MainComponent implements OnInit{
     'home': true,
     'map': false,
     'favorite': false,
-    'user': false
+    'user': false,
+    'posting': false
   };
 
   destroy$: Subject<null>;

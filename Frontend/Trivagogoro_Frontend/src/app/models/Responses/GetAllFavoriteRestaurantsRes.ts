@@ -9,4 +9,6 @@ export interface GetAllFavoriteRestaurantsDTO
   selfRating: number,
   resId: number,
   resName: string
+  placeId: string,
+  images: string[]
 }

@@ -166,13 +166,18 @@ VALUES({req.UserId}, {req.RestaurantId}, {req.Rating});
             using (var conn = new MySqlConnection(ConnectionString))
             {
                 string sql = $@"
-SELECT f.id AS favId, f.selfRating AS selfRating, r.id AS resId, r.name AS resName
+SELECT f.id AS favId, f.selfRating AS selfRating, r.id AS resId, r.name AS resName, r.placeId AS placeId
 FROM FAVORITE f
 INNER JOIN RESTAURANT r
 ON f.restaurantId = r.id
 WHERE f.userId = {userId};";
 
                 var dto = (await conn.QueryAsync<GetAllFavoriteRestaurantDTO>(sql)).ToList();
+
+                foreach(var d in dto)
+                {
+                    d.images = await this.SearchRestaurantsImagesAsync(d.placeId);
+                }
 
                 return dto;
             }

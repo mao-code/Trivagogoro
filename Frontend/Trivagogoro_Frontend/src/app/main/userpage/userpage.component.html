@@ -1,1 +1,26 @@
-<p>userpage works!</p>
+<div class="my-container">
+  <div class="back">
+    <div class="content">
+      <div class="top">
+        <div class="follow followers">
+          <div class="num">1</div>
+          <div>Followers</div>
+        </div>
+        <div class="avatar">
+          <img src="../../../assets/images/default-avatar.png">
+        </div>
+        <div class="follow followings">
+          <div class="num">1</div>
+          <div>Following</div>
+        </div>
+      </div>
+      <div
+        *ngIf="user"
+        class="name"
+      >{{ '@'+user.name }}</div>
+      <div class="posts">
+
+      </div>
+    </div>
+  </div>
+</div>

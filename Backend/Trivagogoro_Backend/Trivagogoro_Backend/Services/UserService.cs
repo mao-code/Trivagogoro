@@ -103,6 +103,17 @@ namespace Trivagogoro_Backend.Services
 
             return user;
         }
+
+        public async Task<User> GetUserInfoAsync(int userId)
+        {
+            string sql = $"SELECT * FROM `USER` WHERE id = {userId}";
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                var user = (await conn.QueryAsync<User>(sql)).First();
+
+                return user;
+            }
+        }
     }
 }
 

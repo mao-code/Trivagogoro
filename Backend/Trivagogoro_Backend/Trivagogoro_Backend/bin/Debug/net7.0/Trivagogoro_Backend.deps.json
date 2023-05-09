@@ -12,7 +12,7 @@
           "Dapper": "2.0.123",
           "Microsoft.AspNetCore.OpenApi": "7.0.5",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "MySqlConnector": "2.2.5",
+          "MySqlConnector": "2.2.6",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -61,11 +61,11 @@
           }
         }
       },
-      "MySqlConnector/2.2.5": {
+      "MySqlConnector/2.2.6": {
         "runtime": {
           "lib/net7.0/MySqlConnector.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.2.5.0"
+            "fileVersion": "2.2.6.0"
           }
         }
       },
@@ -164,12 +164,12 @@
       "path": "microsoft.openapi/1.4.3",
       "hashPath": "microsoft.openapi.1.4.3.nupkg.sha512"
     },
-    "MySqlConnector/2.2.5": {
+    "MySqlConnector/2.2.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6sinY78RvryhHwpup3awdjYO7d5hhWahb5p/1VDODJhSxJggV/sBbYuKK5IQF9TuzXABiddqUbmRfM884tqA3Q==",
-      "path": "mysqlconnector/2.2.5",
-      "hashPath": "mysqlconnector.2.2.5.nupkg.sha512"
+      "sha512": "sha512-oYHl9TNhJXBEqfuiaEsOdBPkdULOcCCbqZJzYhy0rtREnMVoluG73GM8+gwBCMb1vbjv9K1ehQnhe0cxdxfOCA==",
+      "path": "mysqlconnector/2.2.6",
+      "hashPath": "mysqlconnector.2.2.6.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

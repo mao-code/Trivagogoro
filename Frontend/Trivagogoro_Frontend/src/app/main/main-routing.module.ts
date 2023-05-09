@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule)
+      },
+      {
+        path: 'posting',
+        loadChildren: () => import('./posting/posting.module').then(m => m.PostingModule)
       }
     ]
   }

@@ -46,6 +46,15 @@ namespace Trivagogoro_Backend.Controllers.User
 
             return StatusCode(res.Code, res);
         }
+
+        [HttpGet("info/{userId}")]
+        public async Task<IActionResult> GetUserInfo([FromRoute] int userId)
+        {
+            var user = await _userService.GetUserInfoAsync(userId);
+            var res = new ResponseData<Models.User>(200, true, "Get user info successfully!", user);
+
+            return StatusCode(res.Code, res);
+        }
     }
 }
 

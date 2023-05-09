@@ -6,6 +6,7 @@ import { ResponseData } from 'src/app/models/ResponseData';
 import { RegisterReq } from 'src/app/models/Requests/RegisterReq';
 import { Observable } from 'rxjs';
 import { SigninRes } from 'src/app/models/Responses/SigninRes';
+import { User } from 'src/app/models/Entities/User';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,10 @@ export class UserService {
   getUserId(): number
   {
     return Number.parseInt(localStorage.getItem("userId")!);
+  }
+
+  getUserInfo(userId: number): Observable<ResponseData<User>>
+  {
+    return this.http.get<ResponseData<User>>(`${this.baseURI}/info/${userId}`);
   }
 }
