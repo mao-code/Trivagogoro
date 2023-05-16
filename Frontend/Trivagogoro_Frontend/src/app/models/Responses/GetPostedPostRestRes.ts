@@ -1,6 +1,6 @@
 export interface GetPostedPostRestRes
 {
-  postedPostDTOs: GetPostedPostRestDTO[]
+  postedPostRest: GetPostedPostRestDTO[]
 }
 
 export interface GetPostedPostRestDTO
