@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
 import { RestaurantInfoComponent } from './restaurant-info/restaurant-info.component';
+import { SocialPostComponent } from './social-post/social-post.component';
 
 @NgModule({
   declarations: [
     LoadingComponent,
-    RestaurantInfoComponent
+    RestaurantInfoComponent,
+    SocialPostComponent
   ],
   imports: [
     CommonModule
   ],
   exports:[
     LoadingComponent,
-    RestaurantInfoComponent
+    RestaurantInfoComponent,
+    SocialPostComponent
   ]
 })
 export class ShareModule { }

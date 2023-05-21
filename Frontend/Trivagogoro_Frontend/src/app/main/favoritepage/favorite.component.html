@@ -1,6 +1,6 @@
 <div class="my-container">
   <div class="title">My Favorite</div>
-  <div class="content container">
+  <div class="content">
     <div
       class="tab favorite-tab"
       (click)="changeType('fav')"
@@ -12,22 +12,24 @@
       [ngClass]="activeType['trip'] == true ? 'active-tab' : ''"
     >Trip</div>
 
-    <div class="row">
-      <div
-        *ngFor="let favRest of favRestaurants"
-        class="col col-4"
-      >
-        <div class="fav">
-          <div class="img">
-            <img [src]="favRest.images[0]" alt="fav">
-          </div>
-          <div class="res-name">
-            {{ favRest.resName }}
+    <div class="container">
+      <div class="row">
+        <div
+          *ngFor="let favRest of favRestaurants"
+          class="col col-6"
+        >
+          <div class="fav">
+            <div class="img">
+              <img [src]="favRest.images[0]" alt="fav">
+            </div>
+            <div class="res-name">
+              {{ favRest.resName }}
+            </div>
           </div>
         </div>
+        <div class="col col-6" *ngIf="favRestaurants.length % 2 == 1"></div>
       </div>
-      <div class="col col-4" *ngIf="favRestaurants.length % 3 == 1"></div>
-      <div class="col col-4" *ngIf="favRestaurants.length % 3 == 1 || favRestaurants.length % 3 == 2"></div>
     </div>
+
   </div>
 </div>

@@ -11,6 +11,59 @@ namespace Trivagogoro_Backend.Services
             _restService = restaurantService;
         }
 
+        public async Task<List<GetFollowedPostDTO>> GetFollowedPostAsync(int userId)
+        {
+            // Haven't do foodmap here
+            // one followed user may has multiple posts
+            string sql = $@"
+                SELECT flu.id AS flId, flu.name AS flName,
+                fwp.id AS fwpId, fwp,title AS fwpTitle, fwp.description AS fwpDescription,
+                fwp.archivedNum AS fwpArchivedNum, fwp.type AS fwpType, fwp.sourceId AS fwpSourceId
+                FROM FOLLOWS fl
+                INNER JOIN USER flu
+                ON fl.followingId = u.id
+                INNER JOIN FOODWALLPOST fwp
+                ON fwp.userId = fl.followingId
+                WHERE fl.followerId = {userId}
+            ";
+
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                var dtos = await conn.QueryAsync<GetFollowedPostDTO>(sql);
+                return dtos.ToList();
+            }
+        }
+
+        public async Task FollowAsync(FollowActionReq req)
+        {
+            string sql = "";
+
+            if(req.FollowValue == true)
+            {
+                sql = $@"
+                    INSERT INTO FOLLOWS(followerId, followingId)
+                    VALUES({req.FromUserId}, {req.ToUserId})
+                ";
+            }
+            else
+            {
+                sql = $@"
+                    DELETE FROM FOLLOWS
+                    WHERE followerId = {req.FromUserId} AND followingId = {req.ToUserId}
+                ";
+            }
+
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                await conn.OpenAsync();
+                using (var tran = await conn.BeginTransactionAsync())
+                {
+                    await conn.ExecuteAsync(sql, transaction: tran);
+                    await tran.CommitAsync();
+                }
+            }
+        }
+
         public async Task<List<GetPostedPostRestDTO>> GetPostedPostRestAsync(int userId)
         {
             string sql = $@"
@@ -46,9 +99,9 @@ namespace Trivagogoro_Backend.Services
                 using (var tran = await conn.BeginTransactionAsync())
                 {
                     string sql = $@"
-INSERT INTO FOODWALLPOST(title, description, archivedNum, type, sourceId, userId)
-VALUES('{req.Title}', '{req.Description}', 0, {((int)req.Type)}, {req.SourceId}, {req.userId})
-";
+                        INSERT INTO FOODWALLPOST(title, description, archivedNum, type, sourceId, userId)
+                        VALUES('{req.Title}', '{req.Description}', 0, {((int)req.Type)}, {req.SourceId}, {req.userId})
+                    ";
                     await conn.ExecuteAsync(sql, transaction: tran);
                     await tran.CommitAsync();
                 }

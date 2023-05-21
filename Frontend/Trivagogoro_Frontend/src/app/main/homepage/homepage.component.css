@@ -1,0 +1,68 @@
+.my-container
+{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.top-bar
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 15%;
+}
+.content
+{
+  flex: 1;
+  width: 100%;
+  overflow-y:  scroll;
+}
+
+.title
+{
+  font-size: 8vmin;
+  color: #6b6c1c;
+  font-weight: 900;
+  font-family: math;
+  margin: 10px;
+  width: 100%;
+}
+
+.search-group
+{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 5px 10px;
+  justify-content: center;
+
+  position: relative;
+}
+
+.search-group > input
+{
+  border: none;
+  padding: 5px 10px;
+  padding-left: 35px;
+  border-radius: 20px;
+  font-size: 4vmin;
+  width: 100%;
+  outline: none;
+  background-color: #d9d9d9;
+}
+
+.search-group > i
+{
+  position: absolute;
+  color: #757575;
+  font-size: 4vmin;
+  left: 20px
+}
+
+.col
+{
+  margin: 10px 0;
+  height: 400px;
+}

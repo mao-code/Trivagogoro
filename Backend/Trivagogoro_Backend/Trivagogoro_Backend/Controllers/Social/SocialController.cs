@@ -36,6 +36,29 @@ namespace Trivagogoro_Backend.Controllers.Social
 
             return StatusCode(res.Code, res);
         }
+
+        [HttpGet("followed/post/{userId}")]
+        public async Task<IActionResult> GetFollowedPosts([FromRoute] int userId)
+        {
+            var dto = await _socialService.GetFollowedPostAsync(userId);
+            var res = new ResponseData<GetFollowedPostsRes>(200, true, "Get followed users' posts successfully!", new GetFollowedPostsRes()
+            {
+                FollowedPostDTOs = dto
+            });
+
+            return StatusCode(res.Code, res);
+        }
+
+        [HttpPost("follow")]
+        public async Task<IActionResult> FollowAction([FromBody] FollowActionReq req)
+        {
+            await _socialService.FollowAsync(req);
+            string msg = req.FollowValue ? "follow successfully!" : "unfollow successfully!";
+
+            var res = new ResponseData<object>(200, true, msg, null);
+
+            return StatusCode(res.Code, res);
+        }
     }
 }
 

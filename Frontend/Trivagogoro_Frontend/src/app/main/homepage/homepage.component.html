@@ -1,10 +1,20 @@
 <div class="my-container">
   <div class="top-bar">
-    <div class="title"></div>
+    <div class="title">Trivagogoro</div>
     <div class="search-group">
-      <input type="text">
       <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search" (keypress)="searchUser($event)">
     </div>
   </div>
 
+  <div class="content container">
+    <div class="row">
+      <div class="col col-12" *ngFor="let post of allPosts">
+        <app-social-post
+          [user]="tmpUser!"
+          [post]="post"
+        ></app-social-post>
+      </div>
+    </div>
+  </div>
 </div>
