@@ -14,6 +14,10 @@ namespace Trivagogoro_Backend.Services.DTO
         public int fwpArchivedNum { get; set; } = 0;
         public PostType fwpType { get; set; } = PostType.Rest;
         public int fwpSourceId { get; set; } // Rest => favoriteId, FoodMap => foodmapId
+
+        // for restaurant
+        public string placeId { get; set; } = "";
+        public List<string> images { get; set; } = new List<string>();
     }
 }
 

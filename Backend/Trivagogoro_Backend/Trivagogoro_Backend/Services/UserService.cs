@@ -114,6 +114,23 @@ namespace Trivagogoro_Backend.Services
                 return user;
             }
         }
+
+        public async Task<List<SearchUserDTO>> SearchUserAsync(string keyword, int userId)
+        {
+            string sql = $@"
+                SELECT u.id AS userId, u.name AS userName, IF(ISNULL(f.id), false, true) AS isFollow
+                FROM `USER` u
+                LEFT JOIN FOLLOWS f
+                ON f.followerId = {userId} AND f.followingId = u.id 
+                WHERE u.name LIKE '%{keyword}%'
+            ";
+            using (var conn = new MySqlConnection(ConnectionString))
+            {
+                var dtos = (await conn.QueryAsync<SearchUserDTO>(sql)).ToList();
+
+                return dtos;
+            }
+        }
     }
 }
 

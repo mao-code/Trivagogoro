@@ -7,6 +7,7 @@ namespace Trivagogoro_Backend.Services.Contract
         Task<SignInDTO> SignInUserAsync(string account, string password); // 為求簡單就不用JWT了（不是重點）
         Task<User> GetTopIdUserAsync();
         Task<User> GetUserInfoAsync(int userId);
+        Task<List<SearchUserDTO>> SearchUserAsync(string keyword, int userId);
     }
 }
 

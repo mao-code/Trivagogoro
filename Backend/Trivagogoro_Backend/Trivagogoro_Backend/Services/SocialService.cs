@@ -16,20 +16,30 @@ namespace Trivagogoro_Backend.Services
             // Haven't do foodmap here
             // one followed user may has multiple posts
             string sql = $@"
-                SELECT flu.id AS flId, flu.name AS flName,
-                fwp.id AS fwpId, fwp,title AS fwpTitle, fwp.description AS fwpDescription,
-                fwp.archivedNum AS fwpArchivedNum, fwp.type AS fwpType, fwp.sourceId AS fwpSourceId
+                SELECT flu.id AS flId, flu.name AS flName, fwp.id AS fwpId,
+                fwp.title AS fwpTitle, fwp.description AS fwpDescription,
+                fwp.archivedNum AS fwpArchivedNum, fwp.type AS fwpType, fwp.sourceId AS fwpSourceId,
+                rest.placeId AS placeId
                 FROM FOLLOWS fl
                 INNER JOIN USER flu
-                ON fl.followingId = u.id
+                ON fl.followingId = flu.id
                 INNER JOIN FOODWALLPOST fwp
                 ON fwp.userId = fl.followingId
-                WHERE fl.followerId = {userId}
+                INNER JOIN Favorite fav
+                ON fwp.sourceId = fav.id
+                INNER JOIN Restaurant rest 
+                ON fav.restaurantId = rest.id
+                WHERE fl.followerId = {userId};
             ";
 
             using (var conn = new MySqlConnection(ConnectionString))
             {
                 var dtos = await conn.QueryAsync<GetFollowedPostDTO>(sql);
+                foreach(var dto in dtos)
+                {
+                    dto.images = await _restService.SearchRestaurantsImagesAsync(dto.placeId);
+                }
+
                 return dtos.ToList();
             }
         }

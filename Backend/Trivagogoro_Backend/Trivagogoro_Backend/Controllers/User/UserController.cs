@@ -55,6 +55,15 @@ namespace Trivagogoro_Backend.Controllers.User
 
             return StatusCode(res.Code, res);
         }
+
+        [HttpGet("search/{userName}/{userId}")]
+        public async Task<IActionResult> SearchUser([FromRoute] string userName, [FromRoute] int userId)
+        {
+            var dtos = await _userService.SearchUserAsync(userName, userId);
+            var res = new ResponseData<List<SearchUserDTO>>(200, true, "Search user successfully!", dtos);
+
+            return StatusCode(res.Code, res);
+        }
     }
 }
 

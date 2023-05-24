@@ -2,8 +2,45 @@
   <div class="top-bar">
     <div class="title">Trivagogoro</div>
     <div class="search-group">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" placeholder="Search" (keypress)="searchUser($event)">
+      <div
+        *ngIf="isSearching"
+        class="back"
+        (click)="isSearching=false"
+      >
+        <i class="fa-solid fa-circle-arrow-left"></i>
+      </div>
+      <i
+        [ngStyle]="{
+          'left': isSearching ? '60px' : '20px'
+        }"
+        class="fa-solid fa-magnifying-glass"
+      ></i>
+      <input
+        type="text"
+        placeholder="Search"
+        (keypress)="searchUser($event)"
+        (focus)="isSearching=true"
+        [(ngModel)] = "keyword"
+      >
+    </div>
+  </div>
+
+  <div *ngIf="isSearching" class="search-area">
+    <div *ngIf="searchUserResults.length > 0" class="result-area">
+      <div
+        *ngFor="let user of searchUserResults"
+        class="result"
+      >
+        <div class="search-avatar"></div>
+        {{ user.userName }}
+        <div
+          class="follow-btn"
+          (click)="follow(user.userId, user.isFollow)"
+          [ngStyle]="{
+            'background-color': user.isFollow ? '#747474' : '#6b6c1c'
+          }"
+        >{{ user.isFollow ? 'Unfollow' : 'Follow' }}</div>
+      </div>
     </div>
   </div>
 
@@ -11,7 +48,7 @@
     <div class="row">
       <div class="col col-12" *ngFor="let post of allPosts">
         <app-social-post
-          [user]="tmpUser!"
+          [userName]="isFollowPost(post) ? post.flName : tmpUser!.name"
           [post]="post"
         ></app-social-post>
       </div>

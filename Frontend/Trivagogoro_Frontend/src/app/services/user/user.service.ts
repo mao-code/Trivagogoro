@@ -7,6 +7,7 @@ import { RegisterReq } from 'src/app/models/Requests/RegisterReq';
 import { Observable } from 'rxjs';
 import { SigninRes } from 'src/app/models/Responses/SigninRes';
 import { User } from 'src/app/models/Entities/User';
+import { SearchUserDTO } from 'src/app/models/Responses/SearchUserDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,10 @@ export class UserService {
   getUserInfo(userId: number): Observable<ResponseData<User>>
   {
     return this.http.get<ResponseData<User>>(`${this.baseURI}/info/${userId}`);
+  }
+
+  searchUser(userName: string, userId: number): Observable<ResponseData<SearchUserDTO[]>>
+  {
+    return this.http.get<ResponseData<SearchUserDTO[]>>(`${this.baseURI}/search/${userName}/${userId}`);
   }
 }

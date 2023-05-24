@@ -1,5 +1,7 @@
 ﻿<Properties StartupConfiguration="{D5F84B70-00D1-49F0-AE54-3B831B5DB25A}|http">
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Trivagogoro_Backend/Controllers/Social/SocialController.cs">
     <Files>
       <File FileName="Trivagogoro_Backend/Program.cs" />
@@ -18,28 +20,28 @@
       <File FileName="Trivagogoro_Backend/Services/DTO/SignInDTO.cs" />
       <File FileName="Trivagogoro_Backend/Controllers/Restaurant/RestaurantController.cs" />
       <File FileName="Trivagogoro_Backend/Services/Contract/IRestaurantService.cs" />
-      <File FileName="Trivagogoro_Backend/Services/RestaurantService.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/RestaurantService.cs" />
       <File FileName="Trivagogoro_Backend/Services/DTO/RestaurantDTO.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/ResponseData.cs" />
       <File FileName="Trivagogoro_Backend/Models/Restaurant.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/SignUpReq.cs" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/SearchRestaurantDTO.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/SearchRestaurantDTO.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/AddRestaurantToFavoriteReq.cs" />
       <File FileName="Trivagogoro_Backend/Controllers/Social/SocialController.cs" Line="56" Column="65" />
-      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/PostRestaurantReq.cs" Line="1" Column="1" />
-      <File FileName="Trivagogoro_Backend/Services/Contract/ISocialService.cs" Line="9" Column="45" />
-      <File FileName="Trivagogoro_Backend/Services/SocialService.cs" Line="62" Column="46" />
-      <File FileName="Trivagogoro_Backend/Models/FoodWallPost.cs" Line="9" Column="31" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/PostRestaurantReq.cs" />
+      <File FileName="Trivagogoro_Backend/Services/Contract/ISocialService.cs" />
+      <File FileName="Trivagogoro_Backend/Services/SocialService.cs" />
+      <File FileName="Trivagogoro_Backend/Models/FoodWallPost.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reses/SignUpRes.cs" />
       <File FileName="Trivagogoro_Backend/Models/Favorite.cs" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/GetAllFavoriteRestaurantDTO.cs" Line="1" Column="1" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/GetAllFavoriteRestaurantDTO.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reses/GetAllFavoriteRestaurantRes.cs" />
       <File FileName="Trivagogoro_Backend/Services/DTO/RestaurantResDTO.cs" />
       <File FileName="Trivagogoro_Backend/Models/DTO/Reses/GetPostedPostRes.cs" />
       <File FileName="Trivagogoro_Backend/Services/DTO/GetPostedPostRestDTO.cs" />
-      <File FileName="Trivagogoro_Backend/Services/DTO/GetFollowedPostDTO.cs" Line="16" Column="24" />
-      <File FileName="Trivagogoro_Backend/Models/DTO/Reses/GetFollowedPostsRes.cs" Line="6" Column="104" />
-      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/FollowActionReq.cs" Line="10" Column="28" />
+      <File FileName="Trivagogoro_Backend/Services/DTO/GetFollowedPostDTO.cs" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/Reses/GetFollowedPostsRes.cs" />
+      <File FileName="Trivagogoro_Backend/Models/DTO/Reqs/FollowActionReq.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -70,9 +72,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.Trivagogoro__Backend PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

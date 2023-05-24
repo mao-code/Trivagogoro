@@ -1,12 +1,18 @@
-<div class="my-container" *ngIf="user && post">
+<div class="my-container" *ngIf="userName && post">
   <div class="top-bar">
     <div
       class="avatar"
+      [ngStyle]="{
+        'background-image': 'url('+getRandomAvatar()+')'
+      }"
     ></div>
-    <div class="name">{{ user.name }}</div>
+    <div class="name">{{ userName }}</div>
   </div>
   <div class="img">
-    <img [src]="post.images[0]" alt="rest-img">
+    <img
+      [src]="post.images[0]"
+      alt="rest-img"
+    >
   </div>
   <div class="act-bar">
     <i class="fa-regular fa-heart"></i>
